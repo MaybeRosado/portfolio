@@ -40,5 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*
+# claude code / agent tooling (not part of the site itself)
+.agents
+.claude
+skills-lock.json
+AGENTS.md
+CLAUDE.md
