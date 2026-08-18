@@ -86,7 +86,7 @@ export function Hero() {
 
         <h1
           ref={headlineRef}
-          className="font-display mx-auto max-w-4xl text-[clamp(2.5rem,11vw,9rem)] uppercase leading-[0.9] text-fg"
+          className="font-display mx-auto max-w-5xl text-[clamp(2.5rem,11vw,9rem)] uppercase leading-[0.9] text-fg"
         >
           Interfaces
           <br />
