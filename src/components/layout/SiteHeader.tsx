@@ -48,15 +48,6 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <div className="flex items-center gap-2 border-l border-border pl-6">
-            <span
-              aria-hidden="true"
-              className="h-2 w-2 bg-status-green"
-            />
-            <span className="font-mono-ui text-xs uppercase text-fg-muted">
-              Available
-            </span>
-          </div>
         </nav>
 
         <button

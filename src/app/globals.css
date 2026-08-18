@@ -12,7 +12,6 @@
   --color-accent-ink: #0b0b0c;
   --color-secondary-purple: #3d2a63;
   --color-secondary-green: #1f3d2b;
-  --color-status-green: #39d953;
 }
 
 @theme inline {
@@ -26,7 +25,6 @@
   --color-accent-ink: var(--color-accent-ink);
   --color-secondary-purple: var(--color-secondary-purple);
   --color-secondary-green: var(--color-secondary-green);
-  --color-status-green: var(--color-status-green);
 
   --font-display: var(--font-nge-display);
   --font-sans: var(--font-space-grotesk);

@@ -7,8 +7,8 @@ export const projects: Project[] = [
     category: "client",
     descriptor: "ARCHITECTURE & CONSTRUCTION — LIVE CLIENT SITE",
     description:
-      "Architecture and construction firm site for a Colima-based studio, built on a component library delivered during a Webflow engagement. Portfolio galleries showcase built work such as Casa Maple 31, alongside contact forms and social integration.",
-    tags: ["Webflow", "Component Library", "Portfolio Galleries"],
+      "Architecture and construction firm site for a Colima-based studio, built with Next.js and TypeScript. Portfolio galleries showcase built work such as Casa Maple 31, alongside contact forms and social integration.",
+    tags: ["Next.js", "TypeScript", "Portfolio Galleries"],
     url: "https://anagramarquitectos.com/",
     image: "/images/projects/anagram-arquitectos.png",
     featured: true,
@@ -20,7 +20,7 @@ export const projects: Project[] = [
     descriptor: "REAL ESTATE DEVELOPMENT — LIVE CLIENT SITE",
     description:
       "Marketing site for a luxury residential development in Colima, presenting apartments for sale with premium amenities to prospective buyers.",
-    tags: ["Webflow", "Real Estate", "Lead Generation"],
+    tags: ["React", "JavaScript", "Real Estate"],
     url: "https://nativaliving.anagramarquitectos.com/",
     image: "/images/projects/nativa-living.png",
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     descriptor: "REAL ESTATE LISTINGS — LIVE CLIENT SITE",
     description:
       "Real estate listings platform covering exclusive properties across Colima, Villa de Álvarez, and Comala — featured listings, regional buying guides, and direct contact channels.",
-    tags: ["Webflow", "Property Listings", "Buying Guides"],
+    tags: ["Next.js", "TypeScript", "Property Listings"],
     url: "https://www.casasexclusivas-colima.com/",
     image: "/images/projects/casas-exclusivas-colima.png",
   },

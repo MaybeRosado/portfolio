@@ -41,8 +41,8 @@ export default function Image() {
             textTransform: "uppercase",
           }}
         >
-          <div>Interfaces,</div>
-          <div>Engineered.</div>
+          <div>Interfaces</div>
+          <div>Engineered</div>
         </div>
         <div style={{ fontSize: 28, color: "#9c9c97", marginTop: 32 }}>
           {site.role}
