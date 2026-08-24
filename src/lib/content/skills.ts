@@ -14,7 +14,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "platform-data",
     label: "PLATFORM & DATA",
-    skills: ["Node.js", "SQL", "MongoDB", "Firebase", "GCP", "Docker"],
+    skills: ["Node.js", "SQL", "MongoDB", "Firebase", "GCP", "Docker", "Linux"],
     tinted: true,
   },
   {
@@ -27,6 +27,7 @@ export const skillCategories: SkillCategory[] = [
       "Contentful",
       "Agile",
       "Code Review",
+      "Claude Code",
     ],
   },
 ];

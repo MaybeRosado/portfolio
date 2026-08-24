@@ -5,7 +5,7 @@ export const experience: Experience[] = [
     id: "studio-enova",
     company: "Studio Enova",
     role: "Lead Webflow Developer",
-    dateRange: "JUN 2026 — PRESENT",
+    dateRange: "SEP 2025 — PRESENT",
     location: "Remote / Contract",
     bullets: [
       "Promoted from Webflow Developer to Lead in recognition of project leadership and delivery quality.",
