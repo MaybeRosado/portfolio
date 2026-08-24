@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/lib/motion/gsapConfig";
+import { gsap, ScrollTrigger, EASE, DURATION } from "@/lib/motion/gsapConfig";
 import { withMotionPreference } from "@/components/motion/gsapMatchMedia";
 import { SectionTitleCard } from "@/components/ui/SectionTitleCard";
 import { TagChip } from "@/components/ui/TagChip";
@@ -40,9 +40,9 @@ export function ExperienceTimeline() {
               gsap.to(batch, {
                 opacity: 1,
                 y: 0,
-                duration: 0.7,
+                duration: DURATION.reveal,
                 stagger: 0.12,
-                ease: "power3.out",
+                ease: EASE,
               }),
           });
         },

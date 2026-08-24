@@ -27,7 +27,7 @@ export function ProjectCard({ project, size = "standard" }: ProjectCardProps) {
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative block aspect-[16/10] w-full overflow-hidden border border-border"
+        className="relative block aspect-[16/10] w-full overflow-hidden border border-border transition-transform duration-150 ease-out active:scale-[0.98]"
         aria-label={`Visit ${project.name} (opens in a new tab)`}
       >
         <Image
@@ -35,14 +35,14 @@ export function ProjectCard({ project, size = "standard" }: ProjectCardProps) {
           alt={`Screenshot of the ${project.name} homepage`}
           fill
           sizes={isFeatured ? "100vw" : "50vw"}
-          className="object-cover object-top grayscale contrast-125 transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-cover object-top grayscale contrast-125 transition-transform duration-500 hover-capable:group-hover:scale-[1.03]"
         />
         <div
           aria-hidden="true"
           className="absolute inset-0 mix-blend-multiply"
           style={{ backgroundColor: "var(--color-accent)", opacity: 0.16 }}
         />
-        <CornerBrackets className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <CornerBrackets className="opacity-0 transition-opacity duration-300 hover-capable:group-hover:opacity-100" />
       </Link>
 
       <div className="flex flex-col gap-3">
@@ -78,7 +78,7 @@ export function ProjectCard({ project, size = "standard" }: ProjectCardProps) {
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono-ui mt-1 inline-flex w-fit items-center gap-1.5 text-xs uppercase text-fg transition-colors hover:text-accent"
+          className="font-mono-ui mt-1 inline-flex w-fit items-center gap-1.5 text-xs uppercase text-fg transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
         >
           Visit Site
           <ArrowUpRight size={14} aria-hidden="true" />

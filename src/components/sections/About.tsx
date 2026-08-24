@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/lib/motion/gsapConfig";
+import { gsap, ScrollTrigger, EASE, DURATION } from "@/lib/motion/gsapConfig";
 import { withMotionPreference } from "@/components/motion/gsapMatchMedia";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { SectionTitleCard } from "@/components/ui/SectionTitleCard";
@@ -25,8 +25,8 @@ export function About() {
           gsap.to(leftColRef.current, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: "power3.out",
+            duration: DURATION.reveal,
+            ease: EASE,
             scrollTrigger: {
               trigger: leftColRef.current,
               start: "top 80%",

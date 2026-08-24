@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/lib/motion/gsapConfig";
+import { gsap, ScrollTrigger, EASE, EASE_SOFT, DURATION } from "@/lib/motion/gsapConfig";
 import { withMotionPreference } from "@/components/motion/gsapMatchMedia";
 import { HazardStripe } from "@/components/ui/HazardStripe";
 import { Button } from "@/components/ui/Button";
@@ -31,14 +31,14 @@ export function Contact() {
           gsap.to(stripeRef.current, {
             scaleX: 1,
             duration: 1,
-            ease: "power2.out",
+            ease: EASE_SOFT,
             scrollTrigger: st,
           });
           gsap.to(contentRef.current, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: "power3.out",
+            duration: DURATION.reveal,
+            ease: EASE,
             scrollTrigger: st,
           });
         },

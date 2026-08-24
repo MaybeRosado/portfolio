@@ -1,16 +1,123 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { X, List } from "@phosphor-icons/react/dist/ssr";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "@/lib/motion/gsapConfig";
+import { Draggable } from "gsap/Draggable";
+import { InertiaPlugin } from "gsap/InertiaPlugin";
+import { gsap, ScrollTrigger } from "@/lib/motion/gsapConfig";
+import { useReducedMotion } from "@/components/motion/useReducedMotion";
 import { navLinks, site } from "@/lib/content/site";
-import { cn } from "@/lib/utils/cn";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(Draggable, InertiaPlugin);
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+  const drawerWidthRef = useRef(0);
+  const draggableRef = useRef<Draggable | null>(null);
+  const mountedRef = useRef(false);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!open) return;
+
+    firstMobileLinkRef.current?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  // Set the initial (closed) position before paint, so GSAP's transform
+  // cache matches the DOM before Draggable or any tween reads it.
+  useLayoutEffect(() => {
+    if (!drawerRef.current) return;
+    drawerWidthRef.current = drawerRef.current.offsetWidth;
+    gsap.set(drawerRef.current, { x: drawerWidthRef.current });
+  }, []);
+
+  useEffect(() => {
+    if (!drawerRef.current || reducedMotion) return;
+    const width = drawerRef.current.offsetWidth;
+    drawerWidthRef.current = width;
+
+    const [instance] = Draggable.create(drawerRef.current, {
+      type: "x",
+      bounds: { minX: 0, maxX: width },
+      inertia: true,
+      edgeResistance: 0.65,
+      snap: {
+        x: (value: number) => (value < width / 2 ? 0 : width),
+      },
+      onDragEnd(this: Draggable) {
+        setOpen(this.x < width / 2);
+      },
+    });
+    draggableRef.current = instance;
+
+    return () => {
+      instance.kill();
+      draggableRef.current = null;
+    };
+  }, [reducedMotion]);
+
+  // Re-measure on resize/rotate so bounds and the closed offset stay correct.
+  useEffect(() => {
+    const onResize = () => {
+      if (!drawerRef.current) return;
+      const width = drawerRef.current.offsetWidth;
+      drawerWidthRef.current = width;
+      draggableRef.current?.applyBounds({ minX: 0, maxX: width });
+      if (!open) {
+        gsap.set(drawerRef.current, { x: width });
+      }
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [open]);
+
+  useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      return;
+    }
+    if (!drawerRef.current) return;
+    const width = drawerWidthRef.current || drawerRef.current.offsetWidth;
+
+    if (reducedMotion) {
+      gsap.set(drawerRef.current, { x: open ? 0 : width });
+      return;
+    }
+
+    // Always tween to the target — idempotent if Draggable's own inertia
+    // snap already landed there, and self-correcting if that tween got
+    // interrupted. Disabling Draggable for the duration avoids it
+    // re-rendering the element to its own last-known position on the same
+    // tick as the external tween, which otherwise fights and freezes it.
+    draggableRef.current?.disable();
+    gsap.to(drawerRef.current, {
+      x: open ? 0 : width,
+      duration: 0.4,
+      ease: "power3.out",
+      overwrite: true,
+      onComplete: () => {
+        draggableRef.current?.enable();
+        draggableRef.current?.update();
+      },
+    });
+  }, [open, reducedMotion]);
 
   useGSAP(() => {
     const header = headerRef.current;
@@ -31,7 +138,7 @@ export function SiteHeader() {
   return (
     <header
       ref={headerRef}
-      className="fixed inset-x-0 top-0 z-[80] border-b border-border bg-bg-elevated/95"
+      className="fixed inset-x-0 top-0 z-[80] border-b border-border bg-bg-elevated/70 backdrop-blur-[20px] backdrop-saturate-[1.4] reduced-transparency:bg-bg-elevated/95 reduced-transparency:backdrop-blur-none reduced-transparency:backdrop-saturate-100"
     >
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:h-[72px] md:px-10">
         <Link href="#top" className="font-mono-ui text-sm font-bold text-fg">
@@ -43,7 +150,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-mono-ui text-xs uppercase text-fg-muted transition-colors hover:text-accent"
+              className="font-mono-ui text-xs uppercase text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
             >
               {link.label}
             </Link>
@@ -51,11 +158,13 @@ export function SiteHeader() {
         </nav>
 
         <button
+          ref={menuButtonRef}
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
-          className="text-fg md:hidden"
+          className="text-fg transition-opacity duration-150 ease-out active:opacity-70 md:hidden"
         >
           {open ? (
             <X size={24} aria-hidden="true" />
@@ -66,11 +175,18 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={cn(
-          "fixed inset-x-0 top-16 z-[70] flex h-[calc(100vh-4rem)] flex-col justify-between bg-bg-elevated px-6 py-10 transition-transform duration-300 md:hidden",
-          open ? "translate-x-0" : "translate-x-full"
-        )}
+        id="mobile-nav"
+        ref={drawerRef}
+        aria-hidden={!open}
+        inert={!open}
+        className="fixed bottom-0 right-0 top-16 z-[70] flex w-[min(85vw,360px)] touch-none flex-col justify-between border-l border-border-strong bg-bg-elevated px-6 py-10 md:hidden"
       >
+        <div
+          aria-hidden="true"
+          className="absolute -left-3 top-1/2 flex h-14 w-3 -translate-y-1/2 cursor-grab items-center justify-center bg-border-strong active:cursor-grabbing"
+        >
+          <span className="h-6 w-px bg-fg-muted" />
+        </div>
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-2.5"
@@ -80,12 +196,13 @@ export function SiteHeader() {
           }}
         />
         <nav aria-label="Mobile" className="mt-10 flex flex-col gap-6">
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <Link
               key={link.href}
+              ref={index === 0 ? firstMobileLinkRef : undefined}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="font-display text-3xl uppercase text-fg"
+              className="font-display text-3xl uppercase text-fg transition-opacity duration-150 ease-out active:opacity-70"
             >
               {link.label}
             </Link>

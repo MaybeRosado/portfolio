@@ -13,6 +13,7 @@ export const DURATION = {
   fast: 0.4,
   base: 0.8,
   slow: 1.2,
+  reveal: 0.7,
 };
 
 export { gsap, ScrollTrigger, SplitText };

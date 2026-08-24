@@ -27,7 +27,7 @@ export function SiteFooter() {
                 aria-label={link.label}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-2 text-fg-muted transition-colors hover:text-accent"
+                className="flex items-center gap-2 text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
               >
                 <Icon size={18} weight="light" aria-hidden="true" />
                 <span className="font-mono-ui text-xs uppercase">{link.label}</span>

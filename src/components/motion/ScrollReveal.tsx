@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/lib/motion/gsapConfig";
+import { gsap, ScrollTrigger, EASE, DURATION } from "@/lib/motion/gsapConfig";
 import { withMotionPreference } from "./gsapMatchMedia";
 
 interface ScrollRevealProps {
@@ -37,8 +37,8 @@ export function ScrollReveal({
               gsap.to(batch, {
                 opacity: 1,
                 y: 0,
-                duration: 0.7,
-                ease: "power3.out",
+                duration: DURATION.reveal,
+                ease: EASE,
                 stagger,
               }),
           });
