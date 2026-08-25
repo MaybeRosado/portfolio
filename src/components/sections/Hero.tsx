@@ -27,6 +27,11 @@ export function Hero() {
         scope,
         () => {
           const split = new SplitText(headlineRef.current, { type: "lines" });
+          // SplitText's own accessible-name generation joins split lines with
+          // no space (the <br /> contributes nothing to textContent), so it
+          // announces as "InterfacesEngineered". Override with the correct
+          // spaced label after it runs.
+          headlineRef.current?.setAttribute("aria-label", "Interfaces Engineered");
 
           // Text content (readout, headline, subtext) stays fully opaque from
           // first paint and only animates position — an opacity fade on the
@@ -86,6 +91,7 @@ export function Hero() {
 
         <h1
           ref={headlineRef}
+          aria-label="Interfaces Engineered"
           className="font-display mx-auto max-w-5xl text-[clamp(2.5rem,11vw,9rem)] uppercase leading-[0.9] tracking-[-0.03em] text-fg"
         >
           Interfaces

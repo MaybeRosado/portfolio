@@ -30,14 +30,63 @@ export function SiteHeader() {
 
     firstMobileLinkRef.current?.focus();
 
+    const getFocusable = () => {
+      const links = drawerRef.current
+        ? Array.from(drawerRef.current.querySelectorAll<HTMLElement>("a[href]"))
+        : [];
+      return menuButtonRef.current ? [menuButtonRef.current, ...links] : links;
+    };
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
         menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = getFocusable();
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Keep the rest of the page out of the a11y tree and out of tab order
+  // while the drawer is open, so focus/browse-mode navigation can't leak
+  // past the drawer's own last link into obscured background content.
+  useEffect(() => {
+    const main = document.getElementById("main-content");
+    const footer = document.querySelector("footer");
+    if (open) {
+      main?.setAttribute("inert", "");
+      footer?.setAttribute("inert", "");
+    } else {
+      main?.removeAttribute("inert");
+      footer?.removeAttribute("inert");
+    }
+    return () => {
+      main?.removeAttribute("inert");
+      footer?.removeAttribute("inert");
+    };
   }, [open]);
 
   // Set the initial (closed) position before paint, so GSAP's transform
@@ -136,47 +185,60 @@ export function SiteHeader() {
   }, { scope: headerRef });
 
   return (
-    <header
-      ref={headerRef}
-      className="fixed inset-x-0 top-0 z-[80] border-b border-border bg-bg-elevated/70 backdrop-blur-[20px] backdrop-saturate-[1.4] reduced-transparency:bg-bg-elevated/95 reduced-transparency:backdrop-blur-none reduced-transparency:backdrop-saturate-100"
-    >
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:h-[72px] md:px-10">
-        <Link href="#top" className="font-mono-ui text-sm font-bold text-fg">
-          E.ROSADO-ARAUJO
-        </Link>
+    <>
+      <header
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-[80] border-b border-border bg-bg-elevated/70 backdrop-blur-[20px] backdrop-saturate-[1.4] reduced-transparency:bg-bg-elevated/95 reduced-transparency:backdrop-blur-none reduced-transparency:backdrop-saturate-100"
+      >
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:h-[72px] md:px-10">
+          <Link href="#top" className="font-mono-ui text-sm font-bold text-fg">
+            E.ROSADO-ARAUJO
+          </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="font-mono-ui text-xs uppercase text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-mono-ui text-xs uppercase text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-        <button
-          ref={menuButtonRef}
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((v) => !v)}
-          className="text-fg transition-opacity duration-150 ease-out active:opacity-70 md:hidden"
-        >
-          {open ? (
-            <X size={24} aria-hidden="true" />
-          ) : (
-            <List size={24} aria-hidden="true" />
-          )}
-        </button>
-      </div>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+            className="text-fg transition-opacity duration-150 ease-out active:opacity-70 md:hidden"
+          >
+            {open ? (
+              <X size={24} aria-hidden="true" />
+            ) : (
+              <List size={24} aria-hidden="true" />
+            )}
+          </button>
+        </div>
+      </header>
+
+      <div
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={`fixed inset-x-0 bottom-0 top-16 z-[60] bg-bg/80 backdrop-blur-sm transition-opacity duration-300 ease-out reduced-transparency:bg-bg/95 reduced-transparency:backdrop-blur-none md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
 
       <div
         id="mobile-nav"
         ref={drawerRef}
+        role="dialog"
+        aria-modal={open}
+        aria-label="Mobile navigation"
         aria-hidden={!open}
         inert={!open}
         className="fixed bottom-0 right-0 top-16 z-[70] flex w-[min(85vw,360px)] touch-none flex-col justify-between border-l border-border-strong bg-bg-elevated px-6 py-10 md:hidden"
@@ -210,6 +272,6 @@ export function SiteHeader() {
         </nav>
         <p className="font-mono-ui text-xs text-fg-muted">{site.location}</p>
       </div>
-    </header>
+    </>
   );
 }
