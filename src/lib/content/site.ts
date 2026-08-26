@@ -6,8 +6,19 @@ export const site = {
   role: "Frontend Software Engineer",
   location: "Colima, MX",
   email: "emilioaraujo15@gmail.com",
+  url: "https://emilio-rosado-portfolio.vercel.app",
   summary:
     "Frontend Software Engineer with 2+ years of experience taking interfaces from requirements to production, built fast, accessible, and SEO-strong with React, Next.js, and TypeScript.",
+} as const;
+
+// Kept in sync with globals.css's CSS custom properties by hand: the
+// next/og ImageResponse runtime (icon.tsx, opengraph-image.tsx) can't
+// read CSS custom properties, so these are the one literal copy.
+export const brandColors = {
+  bg: "#0b0b0c",
+  fg: "#edebe6",
+  fgMuted: "#9c9c97",
+  accent: "#f27127",
 } as const;
 
 export const navLinks: NavLink[] = [

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { brandColors } from "@/lib/content/site";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
@@ -13,8 +14,8 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0b0b0c",
-          color: "#f27127",
+          background: brandColors.bg,
+          color: brandColors.accent,
           fontSize: 20,
           fontWeight: 800,
         }}

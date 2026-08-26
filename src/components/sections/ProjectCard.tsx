@@ -78,6 +78,7 @@ export function ProjectCard({ project, size = "standard" }: ProjectCardProps) {
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`Visit ${project.name} site`}
           className="font-mono-ui mt-1 inline-flex w-fit items-center gap-1.5 text-xs uppercase text-fg transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
         >
           Visit Site

@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { site } from "@/lib/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://emilio-rosado-portfolio.vercel.app",
+      url: site.url,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,

@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { NoiseOverlay } from "@/components/layout/NoiseOverlay";
 import { SkipToContent } from "@/components/layout/SkipToContent";
-import { site } from "@/lib/content/site";
+import { site, socialLinks } from "@/lib/content/site";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -24,16 +24,14 @@ const ngeDisplay = localFont({
   display: "swap",
 });
 
-const SITE_URL = "https://emilio-rosado-portfolio.vercel.app";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(site.url),
   title: `${site.name} — ${site.role}`,
   description: site.summary,
   openGraph: {
     title: `${site.name} — ${site.role}`,
     description: site.summary,
-    url: SITE_URL,
+    url: site.url,
     siteName: site.name,
     type: "website",
   },
@@ -56,10 +54,9 @@ const personJsonLd = {
   jobTitle: site.role,
   email: site.email,
   address: site.location,
-  sameAs: [
-    "https://github.com/MaybeRosado",
-    "https://www.linkedin.com/in/emilio-rosado-araujo/",
-  ],
+  sameAs: socialLinks
+    .filter((link) => link.icon !== "email")
+    .map((link) => link.href),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

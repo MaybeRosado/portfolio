@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils/cn";
 
 interface CornerBracketsProps {
   className?: string;
-  bracketClassName?: string;
 }
 
 const SIZE = 24;
@@ -24,11 +23,11 @@ function Bracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
   );
 }
 
-export function CornerBrackets({ className, bracketClassName }: CornerBracketsProps) {
+export function CornerBrackets({ className }: CornerBracketsProps) {
   return (
     <div
       aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-0", className, bracketClassName)}
+      className={cn("pointer-events-none absolute inset-0", className)}
     >
       <Bracket position="tl" />
       <Bracket position="tr" />
