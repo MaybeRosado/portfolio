@@ -100,8 +100,18 @@ export function ExperienceTimeline() {
               <h3 className="font-display mt-2 text-2xl uppercase text-fg md:text-3xl">
                 {role.company}
               </h3>
-              <p className="font-mono-ui mt-1 text-xs uppercase text-accent">
+              <p className="font-mono-ui mt-1 flex flex-wrap items-center gap-2 text-xs uppercase text-accent">
                 {role.role} — {role.location}
+                {role.status === "concurrent" && (
+                  <span className="border border-accent px-1.5 py-0.5 text-[0.65rem] text-accent">
+                    Concurrent
+                  </span>
+                )}
+                {role.status === "paused" && (
+                  <span className="border border-border-strong px-1.5 py-0.5 text-[0.65rem] text-fg-muted">
+                    Paused
+                  </span>
+                )}
               </p>
               <ul className="mt-4 max-w-[65ch] list-none space-y-2 text-sm leading-relaxed text-fg-muted md:text-base">
                 {role.bullets.map((bullet) => (

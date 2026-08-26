@@ -104,7 +104,7 @@ export function Hero() {
           className="mx-auto mt-8 max-w-xl text-base text-fg-muted md:text-lg"
         >
           Two-plus years building fast, accessible, SEO-strong interfaces with
-          React, Next.js, and TypeScript — from Colima to production.
+          React, Next.js, and TypeScript, working from Colima to production.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

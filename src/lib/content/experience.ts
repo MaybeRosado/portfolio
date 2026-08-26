@@ -7,6 +7,7 @@ export const experience: Experience[] = [
     role: "Lead Webflow Developer",
     dateRange: "SEP 2025 — PRESENT",
     location: "Remote / Contract",
+    status: "concurrent",
     bullets: [
       "Promoted from Webflow Developer to Lead in recognition of project leadership and delivery quality.",
       "Leads and mentors a team of two developers, reviewing their work and supporting their growth.",
@@ -18,11 +19,12 @@ export const experience: Experience[] = [
   {
     id: "e3-studio",
     company: "E3 Studio",
-    role: "Frontend Engineer",
-    dateRange: "FEB 2025 — PRESENT",
-    location: "Remote / Freelance",
+    role: "Co-Founder & Frontend Engineer",
+    dateRange: "FEB 2025 — APR 2026",
+    location: "Remote / 3-Person Studio",
+    status: "paused",
     bullets: [
-      "Collaborated with a two-person engineering team to build three client websites from scratch, owning the full lifecycle from scoping through deployment.",
+      "Co-founded a three-person studio with two friends and shipped three client sites, all featured in the Work section below: Anagram Arquitectos, Nativa Living, and Casas Exclusivas Colima.",
       "Implemented SEO-first architecture (meta tags, Open Graph, SSR/SSG via Next.js), achieving Lighthouse SEO scores of 90+.",
       "Delivered on-spec, maintainable features using Next.js, React, TypeScript, and Contentful CMS.",
     ],

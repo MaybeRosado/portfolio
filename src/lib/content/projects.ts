@@ -30,7 +30,7 @@ export const projects: Project[] = [
     category: "client",
     descriptor: "REAL ESTATE LISTINGS — LIVE CLIENT SITE",
     description:
-      "Real estate listings platform covering exclusive properties across Colima, Villa de Álvarez, and Comala — featured listings, regional buying guides, and direct contact channels.",
+      "Real estate listings platform covering exclusive properties across Colima, Villa de Álvarez, and Comala, with featured listings, regional buying guides, and direct contact channels.",
     tags: ["Next.js", "TypeScript", "Property Listings"],
     url: "https://www.casasexclusivas-colima.com/",
     image: "/images/projects/casas-exclusivas-colima.png",

@@ -17,6 +17,7 @@ export interface Experience {
   location: string;
   bullets: string[];
   tags: string[];
+  status?: "concurrent" | "paused";
 }
 
 export type ProjectCategory = "client" | "personal";
@@ -37,5 +38,5 @@ export interface SkillCategory {
   id: string;
   label: string;
   skills: string[];
-  tinted?: boolean;
+  tint?: "green" | "purple";
 }

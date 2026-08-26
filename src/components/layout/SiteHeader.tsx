@@ -9,6 +9,7 @@ import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { gsap, ScrollTrigger } from "@/lib/motion/gsapConfig";
 import { useReducedMotion } from "@/components/motion/useReducedMotion";
 import { navLinks, site } from "@/lib/content/site";
+import { cn } from "@/lib/utils/cn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(Draggable, InertiaPlugin);
@@ -16,6 +17,7 @@ if (typeof window !== "undefined") {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("");
   const headerRef = useRef<HTMLElement | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
@@ -168,6 +170,27 @@ export function SiteHeader() {
     });
   }, [open, reducedMotion]);
 
+  // Track which section is currently in view so the desktop nav can
+  // highlight it. rootMargin biases toward the vertical center of the
+  // viewport rather than firing the instant a section's top edge appears.
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.getElementById(link.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) setActiveHref(`#${visible.target.id}`);
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   useGSAP(() => {
     const header = headerRef.current;
     if (!header) return;
@@ -196,15 +219,24 @@ export function SiteHeader() {
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-mono-ui text-xs uppercase text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.href === activeHref;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "location" : undefined}
+                  className={cn(
+                    "font-mono-ui text-xs uppercase transition-colors duration-150 ease-out active:opacity-70",
+                    isActive
+                      ? "text-accent"
+                      : "text-fg-muted hover-capable:hover:text-accent"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <button

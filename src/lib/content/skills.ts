@@ -15,7 +15,7 @@ export const skillCategories: SkillCategory[] = [
     id: "platform-data",
     label: "PLATFORM & DATA",
     skills: ["Node.js", "SQL", "MongoDB", "Firebase", "GCP", "Docker", "Linux"],
-    tinted: true,
+    tint: "green",
   },
   {
     id: "practice",
@@ -23,12 +23,15 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       "SEO / Lighthouse 90+",
       "Accessibility (WCAG, ARIA)",
-      "Vercel",
-      "Contentful",
       "Agile",
       "Code Review",
-      "Claude Code",
     ],
+  },
+  {
+    id: "tooling",
+    label: "TOOLING",
+    skills: ["Vercel", "Contentful", "Claude Code"],
+    tint: "purple",
   },
 ];
 
