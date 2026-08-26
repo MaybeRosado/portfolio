@@ -7,7 +7,6 @@ export const experience: Experience[] = [
     role: "Lead Webflow Developer",
     dateRange: "SEP 2025 — PRESENT",
     location: "Remote / Contract",
-    status: "concurrent",
     bullets: [
       "Promoted from Webflow Developer to Lead in recognition of project leadership and delivery quality.",
       "Leads and mentors a team of two developers, reviewing their work and supporting their growth.",
