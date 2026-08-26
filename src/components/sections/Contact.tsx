@@ -74,21 +74,8 @@ export function Contact() {
         >
           Let&apos;s talk
         </h2>
-        <p className="mx-auto mt-6 max-w-md text-base text-fg-muted md:text-lg">
-          Open to new roles and freelance collaborations. Reach out and I
-          will get back to you shortly.
-        </p>
         <div className="mt-10">
           <Button href={`mailto:${site.email}`}>Email Me</Button>
-          <p className="font-mono-ui mt-5 text-xs text-fg-muted">
-            or write directly:{" "}
-            <a
-              href={`mailto:${site.email}`}
-              className="text-fg underline underline-offset-4 transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
-            >
-              {site.email}
-            </a>
-          </p>
         </div>
       </div>
     </section>
