@@ -30,7 +30,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "tooling",
     label: "TOOLING",
-    skills: ["Vercel", "Contentful", "Claude Code"],
+    skills: ["Vercel", "Contentful", "Cloudinary", "Playwright", "Claude Code"],
     tint: "purple",
   },
 ];
