@@ -1,4 +1,9 @@
-import { GithubLogo, LinkedinLogo, EnvelopeSimple } from "@phosphor-icons/react/dist/ssr";
+import {
+  GithubLogo,
+  LinkedinLogo,
+  EnvelopeSimple,
+  FileArrowDown,
+} from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { socialLinks, site } from "@/lib/content/site";
 
@@ -34,6 +39,17 @@ export function SiteFooter() {
               </Link>
             );
           })}
+
+          <a
+            href={site.resumeHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Résumé (PDF, opens in new tab)"
+            className="flex items-center gap-2 text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
+          >
+            <FileArrowDown size={18} weight="light" aria-hidden="true" />
+            <span className="font-mono-ui text-xs uppercase">Résumé</span>
+          </a>
         </div>
       </div>
     </footer>

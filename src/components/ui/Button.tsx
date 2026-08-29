@@ -24,12 +24,23 @@ export function Button({
       "border border-border-strong text-fg hover:border-accent hover:text-accent",
   };
 
-  const externalProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
+  const classes = cn(base, variants[variant], className);
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classes}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <Link href={href} className={cn(base, variants[variant], className)} {...externalProps}>
+    <Link href={href} className={classes}>
       {children}
     </Link>
   );

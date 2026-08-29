@@ -237,6 +237,16 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+
+            <a
+              href={site.resumeHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Résumé (PDF, opens in new tab)"
+              className="font-mono-ui text-xs uppercase text-fg-muted transition-colors duration-150 ease-out active:opacity-70 hover-capable:hover:text-accent"
+            >
+              Résumé
+            </a>
           </nav>
 
           <button
@@ -301,6 +311,17 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+
+          <a
+            href={site.resumeHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Résumé (PDF, opens in new tab)"
+            onClick={() => setOpen(false)}
+            className="font-display text-3xl uppercase text-fg transition-opacity duration-150 ease-out active:opacity-70"
+          >
+            Résumé
+          </a>
         </nav>
         <p className="font-mono-ui text-xs text-fg-muted">{site.location}</p>
       </div>

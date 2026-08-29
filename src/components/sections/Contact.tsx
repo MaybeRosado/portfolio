@@ -74,8 +74,11 @@ export function Contact() {
         >
           Let&apos;s talk
         </h2>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button href={`mailto:${site.email}`}>Email Me</Button>
+          <Button href={site.resumeHref} variant="secondary" external>
+            Résumé (PDF)
+          </Button>
         </div>
       </div>
     </section>

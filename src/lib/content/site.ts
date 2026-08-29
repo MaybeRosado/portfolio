@@ -7,6 +7,7 @@ export const site = {
   location: "Colima, MX",
   email: "emilioaraujo15@gmail.com",
   url: "https://emilio-rosado-portfolio.vercel.app",
+  resumeHref: "/emilio-rosado-araujo-resume.pdf",
   summary:
     "Frontend Software Engineer with 2+ years of experience taking interfaces from requirements to production, built fast, accessible, and SEO-strong with React, Next.js, and TypeScript.",
 } as const;
