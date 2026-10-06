@@ -53,9 +53,9 @@ export const experience: Experience[] = [
     location: "On Site",
     bullets: [
       "Built full-stack applications with a React, TypeScript, and Tailwind CSS frontend and a PHP backend handling data storage, retrieval, updates, and deletion.",
-      "Containerized the project with Docker, packaging Node.js and PHP dependencies into the image so any developer could spin up an identical, working environment on a new machine.",
+      "Containerized the project with Docker and Docker Compose, packaging Node.js and PHP dependencies into images and orchestrating the services so any developer could spin up an identical, working environment on a new machine with a single command.",
       "Applied responsive design and WCAG accessibility best practices.",
     ],
-    tags: ["React", "TypeScript", "Tailwind", "PHP", "Docker"],
+    tags: ["React", "TypeScript", "Tailwind", "PHP", "Docker", "Docker Compose"],
   },
 ];
