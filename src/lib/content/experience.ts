@@ -48,7 +48,7 @@ export const experience: Experience[] = [
   {
     id: "universidad-de-colima",
     company: "Universidad de Colima",
-    role: "Web Developer",
+    role: "Full-Stack Developer",
     dateRange: "AUG 2024 — JAN 2025",
     location: "On Site",
     bullets: [
