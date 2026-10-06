@@ -77,7 +77,7 @@ export function Contact() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button href={`mailto:${site.email}`}>Email Me</Button>
           <Button href={site.resumeHref} variant="secondary" external>
-            Résumé (PDF)
+            Resume (PDF)
           </Button>
         </div>
       </div>

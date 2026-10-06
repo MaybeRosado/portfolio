@@ -44,11 +44,11 @@ export function SiteFooter() {
             href={site.resumeHref}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Résumé (PDF, opens in new tab)"
+            aria-label="Resume (PDF, opens in new tab)"
             className="flex items-center gap-2 text-fg-muted transition-colors duration-150 ease-out hover-capable:hover:text-accent active:opacity-70"
           >
             <FileArrowDown size={18} weight="light" aria-hidden="true" />
-            <span className="font-mono-ui text-xs uppercase">Résumé</span>
+            <span className="font-mono-ui text-xs uppercase">Resume</span>
           </a>
         </div>
       </div>
