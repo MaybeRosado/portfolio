@@ -52,9 +52,10 @@ export const experience: Experience[] = [
     dateRange: "AUG 2024 — JAN 2025",
     location: "On Site",
     bullets: [
-      "Built full-stack applications with a React/TypeScript frontend and a PHP backend handling data storage, retrieval, updates, and deletion.",
+      "Built full-stack applications with a React, TypeScript, and Tailwind CSS frontend and a PHP backend handling data storage, retrieval, updates, and deletion.",
+      "Containerized the project with Docker, packaging Node.js and PHP dependencies into the image so any developer could spin up an identical, working environment on a new machine.",
       "Applied responsive design and WCAG accessibility best practices.",
     ],
-    tags: ["React", "TypeScript", "Tailwind", "PHP"],
+    tags: ["React", "TypeScript", "Tailwind", "PHP", "Docker"],
   },
 ];
