@@ -39,4 +39,6 @@ export interface SkillCategory {
   label: string;
   skills: string[];
   tint?: "green" | "purple";
+  /** Spans two grid rows from the `sm` breakpoint up. */
+  tall?: boolean;
 }

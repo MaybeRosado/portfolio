@@ -43,6 +43,7 @@ export const skillCategories: SkillCategory[] = [
       "Contentful",
       "Cloudinary",
     ],
+    tall: true,
   },
   {
     id: "databases",

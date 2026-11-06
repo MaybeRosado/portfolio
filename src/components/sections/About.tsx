@@ -83,10 +83,10 @@ export function About() {
         </div>
 
         <ScrollReveal
-          className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2"
+          className="grid grid-cols-1 gap-px bg-border sm:auto-rows-fr sm:grid-cols-2"
           stagger={0.08}
         >
-          {skillCategories.map((category, index) => (
+          {skillCategories.map((category) => (
             <div
               key={category.id}
               className={cn(
@@ -95,9 +95,7 @@ export function About() {
                   "bg-[color-mix(in_srgb,var(--color-secondary-green)_40%,var(--color-bg))]",
                 category.tint === "purple" &&
                   "bg-[color-mix(in_srgb,var(--color-secondary-purple)_40%,var(--color-bg))]",
-                index === skillCategories.length - 1 &&
-                  skillCategories.length % 2 !== 0 &&
-                  "sm:col-span-2"
+                category.tall && "sm:row-span-2"
               )}
             >
               <p className="font-mono-ui text-xs uppercase text-accent">
