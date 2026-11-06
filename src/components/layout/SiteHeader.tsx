@@ -323,7 +323,7 @@ export function SiteHeader() {
             Resume
           </a>
         </nav>
-        <p className="font-mono-ui text-xs text-fg-muted">{site.location}</p>
+        <p className="font-mono-ui text-xs text-fg-muted">{site.location} — {site.availability}</p>
       </div>
     </>
   );

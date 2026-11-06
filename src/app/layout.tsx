@@ -29,10 +29,10 @@ const ngeDisplay = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: `${site.name} — ${site.role}`,
-  description: site.summary,
+  description: site.description,
   openGraph: {
     title: `${site.name} — ${site.role}`,
-    description: site.summary,
+    description: site.description,
     url: site.url,
     siteName: site.name,
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.role}`,
-    description: site.summary,
+    description: site.description,
   },
 };
 

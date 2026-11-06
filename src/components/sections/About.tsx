@@ -55,11 +55,9 @@ export function About() {
     >
       <div className="mx-auto grid max-w-[1400px] gap-16 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
         <div ref={leftColRef}>
-          <SectionTitleCard id="about-heading">Builds fast, accessible interfaces</SectionTitleCard>
+          <SectionTitleCard id="about-heading">Ships, monitors, automates</SectionTitleCard>
           <p className="mt-8 max-w-[52ch] text-base leading-relaxed text-fg-muted md:text-lg">
-            {site.summary} Comfortable working independently and within
-            agile, cross-functional teams, from technical scoping through
-            production deployment.
+            {site.summary}
           </p>
 
           <dl className="mt-10 space-y-4 border-t border-border pt-8">
@@ -71,14 +69,16 @@ export function About() {
                 {credentials.degree} — {credentials.school}
               </dd>
             </div>
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono-ui text-xs uppercase text-fg-muted">
-                {credentials.certDate}
-              </dt>
-              <dd className="text-sm text-fg">
-                {credentials.certification} — {credentials.certifier}
-              </dd>
-            </div>
+            {credentials.certifications.map((cert) => (
+              <div key={cert.name} className="flex flex-col gap-1">
+                <dt className="font-mono-ui text-xs uppercase text-fg-muted">
+                  {cert.date}
+                </dt>
+                <dd className="text-sm text-fg">
+                  {cert.name} — {cert.issuer}
+                </dd>
+              </div>
+            ))}
           </dl>
         </div>
 

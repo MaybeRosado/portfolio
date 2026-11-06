@@ -41,8 +41,8 @@ export default function Image() {
             textTransform: "uppercase",
           }}
         >
-          <div>Interfaces</div>
-          <div>Engineered</div>
+          <div>Shipped &amp;</div>
+          <div>Operated</div>
         </div>
         <div style={{ fontSize: 28, color: brandColors.fgMuted, marginTop: 32 }}>
           {site.role}

@@ -3,13 +3,17 @@ import type { NavLink, SocialLink } from "@/types/content";
 export const site = {
   name: "Emilio Rosado Araujo",
   shortName: "E. Rosado",
-  role: "Frontend Software Engineer",
-  location: "Colima, MX",
+  role: "Software Engineer | Cloud, CI/CD & Automation",
+  location: "Colima, Mexico",
+  availability: "Open to Remote",
   email: "emilioaraujo15@gmail.com",
   url: "https://emilio-rosado-portfolio.vercel.app",
   resumeHref: "/emilio-rosado-araujo-resume.pdf",
+  // Short form for meta tags; the full `summary` is too long for snippets.
+  description:
+    "Software Engineer with 2+ years shipping and operating production web applications across 20+ live sites, now growing into DevOps.",
   summary:
-    "Frontend Software Engineer with 2+ years of experience taking interfaces from requirements to production, built fast, accessible, and SEO-strong with React, Next.js, and TypeScript.",
+    "Software Engineer with 2+ years shipping and operating production web applications across 20+ live sites. Owns projects end-to-end, from technical scoping through deployment, monitoring and maintenance on Vercel, with hands-on exposure to Docker, Linux, Git/GitHub and GCP. Builds automated verification into delivery, using Playwright to validate AI-generated code against specifications before handoff. Uses AI code assistants (Claude Code) daily for well-defined tasks while reviewing output for correctness and team standards. Now growing into DevOps: infrastructure as code, CI/CD pipelines and cloud platforms.",
 } as const;
 
 // Kept in sync with globals.css's CSS custom properties by hand: the

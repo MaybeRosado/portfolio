@@ -29,9 +29,9 @@ export function Hero() {
           const split = new SplitText(headlineRef.current, { type: "lines" });
           // SplitText's own accessible-name generation joins split lines with
           // no space (the <br /> contributes nothing to textContent), so it
-          // announces as "InterfacesEngineered". Override with the correct
+          // announces as "Shipped &Operated". Override with the correct
           // spaced label after it runs.
-          headlineRef.current?.setAttribute("aria-label", "Interfaces Engineered");
+          headlineRef.current?.setAttribute("aria-label", "Shipped & Operated");
 
           // Text content (readout, headline, subtext) stays fully opaque from
           // first paint and only animates position — an opacity fade on the
@@ -86,25 +86,25 @@ export function Hero() {
           data-hero-readout
           className="font-mono-ui mb-8 text-xs uppercase text-fg-muted"
         >
-          SYS://EMILIO-ROSADO-ARAUJO — FRONTEND ENGINEER — REV 2026.08
+          SYS://EMILIO-ROSADO-ARAUJO — CLOUD, CI/CD &amp; AUTOMATION — REV 2026.11
         </p>
 
         <h1
           ref={headlineRef}
-          aria-label="Interfaces Engineered"
+          aria-label="Shipped & Operated"
           className="font-display mx-auto max-w-5xl text-[clamp(2.5rem,11vw,9rem)] uppercase leading-[0.9] tracking-[-0.03em] text-fg"
         >
-          Interfaces
+          Shipped &amp;
           <br />
-          Engineered
+          Operated
         </h1>
 
         <p
           data-hero-subtext
           className="mx-auto mt-8 max-w-xl text-base text-fg-muted md:text-lg"
         >
-          Two-plus years building fast, accessible, SEO-strong interfaces with
-          React, Next.js, and TypeScript, working from Colima to production.
+          Two-plus years shipping and operating production web applications
+          across 20+ live sites, now growing into DevOps.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
