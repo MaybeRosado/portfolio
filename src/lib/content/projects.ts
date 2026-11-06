@@ -7,8 +7,8 @@ export const projects: Project[] = [
     category: "client",
     descriptor: "ARCHITECTURE & CONSTRUCTION — LIVE CLIENT SITE",
     description:
-      "Architecture and construction firm site for a Colima-based studio, built with Next.js and TypeScript. Portfolio galleries showcase built work such as Casa Maple 31, alongside contact forms and social integration.",
-    tags: ["Next.js", "TypeScript", "Portfolio Galleries"],
+      "Architecture and real-estate site for a Colima-based studio, built with Next.js and Contentful and deployed on Vercel. First page on Google for \"arquitectos Colima\".",
+    tags: ["Next.js", "Contentful", "Vercel"],
     url: "https://anagramarquitectos.com/",
     image: "/images/projects/anagram-arquitectos.png",
     featured: true,
@@ -19,8 +19,8 @@ export const projects: Project[] = [
     category: "client",
     descriptor: "REAL ESTATE DEVELOPMENT — LIVE CLIENT SITE",
     description:
-      "Marketing site for a luxury residential development in Colima, presenting apartments for sale with premium amenities to prospective buyers.",
-    tags: ["React", "JavaScript", "Real Estate"],
+      "Apartment-listing site for a residential development in Colima with editor-managed content, built with Next.js and Contentful and deployed on Vercel.",
+    tags: ["Next.js", "Contentful", "Vercel"],
     url: "https://nativaliving.anagramarquitectos.com/",
     image: "/images/projects/nativa-living.png",
   },
@@ -30,8 +30,8 @@ export const projects: Project[] = [
     category: "client",
     descriptor: "REAL ESTATE LISTINGS — LIVE CLIENT SITE",
     description:
-      "Real estate listings platform covering exclusive properties across Colima, Villa de Álvarez, and Comala, with featured listings, regional buying guides, and direct contact channels.",
-    tags: ["Next.js", "TypeScript", "Property Listings"],
+      "Real-estate marketplace covering properties across Colima, Villa de Álvarez, and Comala, built with Next.js, TypeScript, and Contentful and deployed on Vercel. First page on Google for \"casas Colima\".",
+    tags: ["Next.js", "TypeScript", "Contentful", "Vercel"],
     url: "https://www.casasexclusivas-colima.com/",
     image: "/images/projects/casas-exclusivas-colima.png",
   },
